@@ -1,0 +1,18 @@
+/* 
+    Created on : 17/03/2019, 03:57:00 PM
+    Author     : Armando
+*/
+*::selection {
+    color: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.required.col-form-label:before {
+   content: "*";
+   color: red;
+   font-weight: bold;
+}
+
+.card-header:nth-child(n+2) {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}

@@ -181,7 +181,7 @@ public class EmpleadoController extends HttpServlet {
             if(request.getSession().getAttribute("Usuario") != null)
                 user = (Usuario)request.getSession().getAttribute("Usuario");
         }
-        int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : 0;
+        int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : request.getSession().getAttribute("id") != null ? (Integer)request.getSession().getAttribute("id") : 0;
         Empleado empleado = new Empleado(id);
         if(empleado.getId() != 0) {
             request.setAttribute("empleado", empleado);

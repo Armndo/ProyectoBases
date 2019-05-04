@@ -182,8 +182,15 @@ public class EmpleadoController extends HttpServlet {
                 user = (Usuario)request.getSession().getAttribute("Usuario");
         }
         int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : request.getSession().getAttribute("id") != null ? (Integer)request.getSession().getAttribute("id") : 0;
+        request.getSession().removeAttribute("id");
+        request.getSession().removeAttribute("Persona");
+        request.getSession().removeAttribute("Empleado");
+        request.getSession().removeAttribute("Usuario");
         Empleado empleado = new Empleado(id);
         if(empleado.getId() != 0) {
+            request.setAttribute("Persona", per);
+            request.setAttribute("Empleado", emp);
+            request.setAttribute("Usuario", user);
             request.setAttribute("empleado", empleado);
             request.setAttribute("paises", Pais.get());
             request.setAttribute("aerolineas", Aerolinea.get());
@@ -209,6 +216,10 @@ public class EmpleadoController extends HttpServlet {
         for(Usuario usuario : Usuario.get())
             if(usuario.getEmail().equals(email) && id != usuario.getId()) {
                 errors.add(1062);
+                request.getSession().setAttribute("id", id);
+                request.getSession().setAttribute("Persona", new Persona(nombre, appaterno, apmaterno == null ? "" : apmaterno, direccion == null ? "" : direccion, sexo == null ? "" : sexo, pais_id));
+                request.getSession().setAttribute("Empleado", new Empleado(puesto, aerolinea_id));
+                request.getSession().setAttribute("Usuario", new Usuario(email, password));
                 request.getSession().setAttribute("errors", errors);
                 response.sendRedirect(request.getContextPath() + "/Empleado/Edit");
                 return ;

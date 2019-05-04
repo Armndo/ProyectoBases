@@ -47,6 +47,7 @@
             request.removeAttribute("Persona");
             request.removeAttribute("Pasajero");
             request.removeAttribute("Usuario");
+            System.out.println("-----");
             System.out.println(per);
             System.out.println(emp);
             System.out.println(user);
@@ -71,29 +72,35 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label for="nombre" class="col-form-label required">Nombre:</label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" required="" value="<%= empleado.persona().getNombre() %>">
+                                    <input type="text" class="form-control" name="nombre" id="nombre" required="" value="<%= per.getNombre() == null ? empleado.persona().getNombre() : per.getNombre() %>">
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="appaterno" class="col-form-label required">Apellido Paterno:</label>
-                                    <input type="text" class="form-control" name="appaterno" id="appaterno" required="" value="<%= empleado.persona().getAppaterno()%>">
+                                    <input type="text" class="form-control" name="appaterno" id="appaterno" required="" value="<%= per.getAppaterno() == null ? empleado.persona().getAppaterno() : per.getAppaterno() %>">
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="apmaterno" class="col-form-label">Apellido Materno:</label>
-                                    <input type="text" class="form-control" name="apmaterno" id="apmaterno" value="<%= empleado.persona().getApmaterno() != null ? empleado.persona().getApmaterno() : "" %>">
+                                    <input type="text" class="form-control" name="apmaterno" id="apmaterno" value="<%= per.getApmaterno() == null ? empleado.persona().getApmaterno() != null ? empleado.persona().getApmaterno() : "" : per.getApmaterno() %>">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-4 form-group">
                                     <label for="direccion" class="col-form-label">Dirección:</label>
-                                    <textarea name="direccion" id="direccion" class="form-control"><%= empleado.persona().getDireccion() != null ? empleado.persona().getDireccion() : "" %></textarea>
+                                    <textarea name="direccion" id="direccion" class="form-control"><%= per.getDireccion() == null ? empleado.persona().getDireccion() != null ? empleado.persona().getDireccion() : "" : per.getDireccion() %></textarea>
                                 </div>
                                 <div class="col-sm-4 form-group">
                                     <label for="sexo" class="col-form-label">Sexo:</label>
                                     <select name="sexo" id="sexo" class="form-control">
                                         <option value="">Seleccionar</option>
+                                        <% if(per.getSexo() == null) { %>
                                         <option value="Hombre"<%= empleado.persona().getSexo() != null ? empleado.persona().getSexo().equals("Hombre") ? " selected" : "" : "" %>>Hombre</option>
                                         <option value="Mujer"<%= empleado.persona().getSexo() != null ? empleado.persona().getSexo().equals("Mujer") ? " selected" : "" : "" %>>Mujer</option>
                                         <option value="Otro"<%= empleado.persona().getSexo() != null ? empleado.persona().getSexo().equals("Otro") ? " selected" : "" : "" %>>Otro</option>
+                                        <% } else { %>
+                                        <option value="Hombre"<%= per.getSexo().equals("Hombre") ? " selected" : "" %>>Hombre</option>
+                                        <option value="Mujer"<%= per.getSexo().equals("Mujer") ? " selected" : "" %>>Mujer</option>
+                                        <option value="Otro"<%= per.getSexo().equals("Otro") ? " selected" : "" %>>Otro</option>
+                                        <% } %>
                                     </select>
                                 </div>
                                 <div class="col-sm-4 form-group">
@@ -101,7 +108,7 @@
                                     <select name="pais_id" id="pais_id" class="form-control" required="">
                                         <option value="">Seleccionar</option>
                                         <% for(Pais pais : (ArrayList<Pais>)request.getAttribute("paises")) { %>
-                                        <option value="<%= pais.getId() %>"<%= empleado.persona().getPais_id() == pais.getId() ? " selected" : "" %>><%= pais.getNombre() %></option>
+                                        <option value="<%= pais.getId() %>"<%= per.getPais_id() == 0 ? empleado.persona().getPais_id() == pais.getId() ? " selected" : "" : per.getPais_id() == pais.getId() ? " selected" : "" %>><%= pais.getNombre() %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -111,9 +118,15 @@
                                     <label for="puesto" class="col-form-label required">Puesto:</label>
                                     <select name="puesto" id="puesto" class="form-control" required="" onchange="show(this)">
                                         <option value="">Seleccionar</option>
+                                        <% if(per.getSexo() == null) { %>
                                         <option value="Administrador"<%= empleado.getPuesto().equals("Administrador") ? " selected" : "" %>>Administrador</option>
                                         <option value="Gerente"<%= empleado.getPuesto().equals("Gerente") ? " selected" : "" %>>Gerente</option>
                                         <option value="Piloto"<%= empleado.getPuesto().equals("Piloto") ? " selected" : "" %>>Piloto</option>
+                                        <% } else { %>
+                                        <option value="Administrador"<%= emp.getPuesto().equals("Administrador") ? " selected" : "" %>>Administrador</option>
+                                        <option value="Gerente"<%= emp.getPuesto().equals("Gerente") ? " selected" : "" %>>Gerente</option>
+                                        <option value="Piloto"<%= emp.getPuesto().equals("Piloto") ? " selected" : "" %>>Piloto</option>
+                                        <% } %>
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
@@ -121,13 +134,13 @@
                                     <select name="aerolinea_id" id="aerolinea_id" class="form-control">
                                         <option value="">Seleccionar</option>
                                         <% for(Aerolinea aerolinea : (ArrayList<Aerolinea>)request.getAttribute("aerolineas")) { %>
-                                        <option value="<%= aerolinea.getId() %>"<%= empleado.getAerolinea_id() == aerolinea.getId() ? " selected" : "" %>><%= aerolinea.getNombre() %></option>
+                                        <option value="<%= aerolinea.getId() %>"<%= emp.getAerolinea_id() == 0 ? empleado.getAerolinea_id() == aerolinea.getId() ? " selected" : "" : emp.getAerolinea_id() == aerolinea.getId() ? " selected" : "" %>><%= aerolinea.getNombre() %></option>
                                         <% } %>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                            <div id="usuario"<%= (usuario == null || !(empleado.getPuesto().equals("Administrador") || empleado.getPuesto().equals("Gerente"))) ? "style=\"display: none;\"" : "" %>>
+                        <div id="usuario"<%= (usuario == null || !(empleado.getPuesto().equals("Administrador") || empleado.getPuesto().equals("Gerente"))) ? emp.getPuesto() == null || !(emp.getPuesto().equals("Administrador") || emp.getPuesto().equals("Gerente")) ? "style=\"display: none;\"" : "" : "" %>>
                             <div class="card-header" style="border-top: 1px solid rgba(0, 0, 0, 0.125);">
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -139,7 +152,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 form-group">
                                         <label for="email" class="col-form-label required">Email:</label>
-                                        <input type="email" name="email" class="form-control<%= f1 ? " is-invalid" : ""%>" id="email" <%= usuario != null ? "required " : "" %>value="<%= usuario != null ? usuario.getEmail() : "" %>">
+                                        <input type="email" name="email" class="form-control<%= f1 ? " is-invalid" : ""%>" id="email" <%= user.getEmail() == null ? usuario != null ? "required " : "" : "required " %>value="<%= user.getEmail() == null ? usuario != null ? usuario.getEmail() : "" : user.getEmail() %>">
                                         <% if(f1) { %>
                                         <span class="invalid-feedback" role="alert">
                                             <strong>Este email ya está utilizado.</strong>
@@ -148,7 +161,7 @@
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <label for="password" class="col-form-label required">Contraseña:</label>
-                                        <input type="password" name="password" class="form-control" id="password" <%= usuario != null ? "required " : "" %>value="<%= usuario != null ? usuario.getPassword() : "" %>">
+                                        <input type="password" name="password" class="form-control" id="password" <%= user.getPassword() == null ? usuario != null ? "required " : "" : "required " %>value="<%= user.getPassword() == null ? usuario != null ? usuario.getPassword() : "" : user.getPassword() %>">
                                     </div>
                                 </div>
                             </div>

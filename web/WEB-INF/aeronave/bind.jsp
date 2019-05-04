@@ -54,8 +54,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <label for="aerolinea_id" class="col-form-label">Aerolínea:</label>
-                                    <select name="aerolinea_id" id="aerolinea_id" class="form-control">
+                                    <label for="aerolinea_id" class="col-form-label required">Aerolínea:</label>
+                                    <select name="aerolinea_id" id="aerolinea_id" class="form-control" required="">
                                         <option value="">Seleccionar</option>
                                         <% for(Aerolinea aerolinea : (ArrayList<Aerolinea>)request.getAttribute("aerolineas")) { %>
                                         <option value="<%= aerolinea.getId() %>"><%= aerolinea.getNombre() %></option>

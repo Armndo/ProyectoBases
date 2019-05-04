@@ -19,7 +19,7 @@
             function buscar() {
                 var val = $('#data').val();
                 $.ajax({
-                    url: "/Prueba/Aeropuerto/Search",
+                    url: "/Bases/Aeropuerto/Search",
                     type: "GET",
                     dataType: "html",
                     data: {

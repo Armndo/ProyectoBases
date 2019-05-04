@@ -109,7 +109,6 @@ public class Empleado {
             ps.setString(2, data);
             ps.setString(3, data);
             ps.setString(4, data);
-            ps.setString(5, data);
             rs = ps.executeQuery();
             while(rs.next())
                 empleados.add(new Empleado(rs.getInt("id"), rs.getString("puesto"), rs.getInt("aerolinea_id")));

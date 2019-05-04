@@ -37,7 +37,7 @@ public class Aeronave {
         dc.closeConnection(con, ps, rs);
     }
 
-    public Aeronave(String modelo, int fabricante_id, int capacidad) {
+    public Aeronave(String modelo, int capacidad, int fabricante_id) {
         this.modelo = modelo;
         this.capacidad = capacidad;
         this.fabricante_id = fabricante_id;
@@ -192,7 +192,6 @@ public class Aeronave {
             rs = ps.executeQuery();
             rs.first();
             count = rs.getInt("count(*)");
-            System.out.println(rs.getInt(1) + " " + rs.getInt(2) + " " + rs.getInt(3));
         } catch(SQLException ex) {
             System.out.println("Aeronave@count: " + ex.getMessage());
         }

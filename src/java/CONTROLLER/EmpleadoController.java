@@ -135,8 +135,8 @@ public class EmpleadoController extends HttpServlet {
         String direccion = !request.getParameter("direccion").equals("") ? request.getParameter("direccion").trim() : null;
         String sexo = !request.getParameter("sexo").equals("") ? request.getParameter("sexo").trim() : null;
         int pais_id = Integer.parseInt(request.getParameter("pais_id").trim());
-        String email = request.getParameter("email") == null ? request.getParameter("email").trim() : null;
-        String password = request.getParameter("password") == null ? request.getParameter("password").trim() : null;
+        String email = request.getParameter("email") != null ? request.getParameter("email").trim() : null;
+        String password = request.getParameter("password") != null ? request.getParameter("password").trim() : null;
         String puesto = request.getParameter("puesto").trim();
         int aerolinea_id = !request.getParameter("aerolinea_id").equals("") ? Integer.parseInt(request.getParameter("aerolinea_id").trim()) : 0;
         ArrayList<Integer> errors = new ArrayList<>();

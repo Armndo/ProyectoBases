@@ -20,12 +20,10 @@
             function show(e) {
                 var val = e.value;
                 if(val == 'Administrador' || val == 'Gerente') {
-                    alert('a');
                     $('#usuario').show();
                     $('#email').prop('required', true);
                     $('#password').prop('required', true);
                 } else {
-                    alert('b');
                     $('#usuario').hide();
                     $('#email').prop('required', false);
                     $('#password').prop('required', false);

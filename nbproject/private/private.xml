@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/CONTROLLER/Register.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/aeronave/index.jsp</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/src/java/CONTROLLER/AerolineaController.java</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/aeronave/create.jsp</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/aeronave/edit.jsp</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/src/java/CONTROLLER/AeronaveController.java</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/src/java/MODEL/Aerolinea.java</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/aeronave/bind.jsp</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/src/java/MODEL/Aeronave.java</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/aeronave/view.jsp</file>
-            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/aeronave/search.jsp</file>
+            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/src/java/CONTROLLER/EmpleadoController.java</file>
+            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/pasajero/edit.jsp</file>
+            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/web/WEB-INF/empleado/edit.jsp</file>
+            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/src/java/CONTROLLER/Halter.java</file>
+            <file>file:/C:/Users/Armando/Documents/NetBeansProjects/Prueba/src/java/CONTROLLER/PasajeroController.java</file>
         </group>
     </open-files>
 </project-private>

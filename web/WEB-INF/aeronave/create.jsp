@@ -42,7 +42,7 @@
                                     <input type="number" min="0" max="1000" class="form-control" name="capacidad" id="capacidad" required="">
                                 </div>
                                 <div class="col-sm-4">
-                                    <label for="fabricante" class="col-form-label required">Fabricante:</label>
+                                    <label for="fabricante_id" class="col-form-label required">Fabricante:</label>
                                     <select name="fabricante_id" id="fabricante_id" required="" class="form-control">
                                         <option value="">Seleccionar</option>
                                         <% for(Fabricante fabricante : (ArrayList<Fabricante>)request.getAttribute("fabricantes")) { %>

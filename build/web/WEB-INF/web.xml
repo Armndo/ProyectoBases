@@ -29,6 +29,10 @@
         <servlet-name>AeronaveController</servlet-name>
         <servlet-class>CONTROLLER.AeronaveController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VueloController</servlet-name>
+        <servlet-class>CONTROLLER.VueloController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>hidden</servlet-name>
         <url-pattern>/hidden</url-pattern>
@@ -80,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>AeronaveController</servlet-name>
         <url-pattern>/Aeronave/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VueloController</servlet-name>
+        <url-pattern>/Vuelo/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

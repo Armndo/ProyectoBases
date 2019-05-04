@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -76,6 +77,24 @@ public class Avion {
         dc.closeConnection(con, ps, rs);
     }
     
+    public static ArrayList<Avion> get() {
+        DatabaseConnector dc = new DatabaseConnector();
+        Connection con = dc.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Avion> aviones = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT * FROM avion");
+            rs = ps.executeQuery();
+            while(rs.next())
+                aviones.add(new Avion(rs.getInt("id"), rs.getInt("aeronave_id"), rs.getInt("aerolinea_id")));
+        } catch(SQLException ex) {
+            System.out.println("Avion@get: " + ex.getMessage());
+        }
+        dc.closeConnection(con, ps, rs);
+        return aviones;
+    }
+    
     public void destroy() {
         DatabaseConnector dc = new DatabaseConnector();
         Connection con = dc.getConnection();
@@ -88,6 +107,14 @@ public class Avion {
             System.out.println("Avion@destroy: " + ex.getMessage());
         }
         dc.closeConnection(con, ps);
+    }
+    
+    public Aeronave aeronave() {
+        return new Aeronave(aeronave_id);
+    }
+    
+    public Aerolinea aerolinea() {
+        return new Aerolinea(aerolinea_id);
     }
     
 }

@@ -157,6 +157,26 @@ public class Aerolinea {
         return aeronaves;
     }
     
+    public ArrayList<Avion> aviones() {
+        DatabaseConnector dc = new DatabaseConnector();
+        Connection con = dc.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Avion> aviones = new ArrayList<>();
+        try {
+            ps = con.prepareStatement("SELECT * FROM avion WHERE aerolinea_id = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                aviones.add(new Avion(rs.getInt("id"), rs.getInt("aeronave_id"), rs.getInt("aerolinea_id")));
+            }
+        } catch(SQLException ex) {
+            System.out.println("Aerolinea@aviones: " + ex.getMessage());
+        }
+        dc.closeConnection(con, ps, rs);
+        return aviones;
+    }
+    
     public int count(int aeronave_id) {
         DatabaseConnector dc = new DatabaseConnector();
         Connection con = dc.getConnection();

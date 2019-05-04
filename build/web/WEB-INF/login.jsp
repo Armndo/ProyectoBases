@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form autocomplete="off" method="POST" action="Session">
+                            <form method="POST" action="Session">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-10 offset-sm-1 form-group">

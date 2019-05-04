@@ -19,7 +19,7 @@
                         <a class="dropdown-item" href="/Bases"><i class="fa fa-home"></i><strong> Inicio</strong></a>
                         <form action="/Bases/Logout" method="POST">
                             <button class="dropdown-item" type="submit">
-                                <strong><i class="fa fa-sign-out"></i> Cerrar Sesión</strong>
+                                <strong><i class="fa fa-sign-out-alt"></i> Cerrar Sesión</strong>
                             </button>
                         </form>
                     </div>
@@ -27,11 +27,20 @@
                 <% if(persona.empleado() != null) { %>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fa fa-users"></i> Pasajeros
+                        <i class="fa fa-user"></i> Pasajeros
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/Bases/Pasajero/Create"><i class="fa fa-plus"></i><strong> Alta</strong></a>
                         <a class="dropdown-item" href="/Bases/Pasajero"><i class="fa fa-bars"></i><strong> Lista</strong></a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                        <i class="fa fa-plane-departure"></i> Vuelos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/Bases/Vuelo/Create"><i class="fa fa-plus"></i><strong> Alta</strong></a>
+                        <a class="dropdown-item" href="/Bases/Vuelo"><i class="fa fa-bars"></i><strong> Lista</strong></a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -45,7 +54,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fa fa-globe"></i> Aeropuertos
+                        <i class="fas fa-globe-americas"></i> Aeropuertos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/Bases/Aeropuerto/Create"><i class="fa fa-plus"></i><strong> Alta</strong></a>
@@ -64,7 +73,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        <i class="fa fa-address-card"></i> Empleados
+                        <i class="fa fa-user-tie"></i> Empleados
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/Bases/Empleado/Create"><i class="fa fa-plus"></i><strong> Alta</strong></a>

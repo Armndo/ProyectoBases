@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/Bases/css/bootstrap.min.css">
 <link rel="stylesheet" href="/Bases/css/main.css">
-<link rel="stylesheet" href="/Bases/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/Bases/fontawesome2/css/all.css">
 <script src="/Bases/js/jquery-3.3.1.min.js"></script>
 <script src="/Bases/js/popper.min.js"></script>
 <script src="/Bases/js/bootstrap.min.js"></script>

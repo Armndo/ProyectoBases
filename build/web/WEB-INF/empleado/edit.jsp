@@ -47,10 +47,6 @@
             request.removeAttribute("Persona");
             request.removeAttribute("Pasajero");
             request.removeAttribute("Usuario");
-            System.out.println("-----");
-            System.out.println(per);
-            System.out.println(emp);
-            System.out.println(user);
         %>
         <%@include file="../header.jsp"%>
         <div class="container-fluid" style="position: absolute; top: 106px; padding-top: 20px; padding-bottom: 20px;">

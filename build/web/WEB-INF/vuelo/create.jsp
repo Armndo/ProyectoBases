@@ -30,10 +30,8 @@
             function changeHora(e) {
                 if(e.value == '<%= fecha %>') {
                     $('#hora').prop('min', '<%= hora %>');
-                    alert('a');
                 } else {
-                    $('#hora').prop('min', '');
-                    alert('b');
+                    $('#hora').prop('min', ' ');
                 }
             }
             
@@ -64,12 +62,20 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="avion_id" class="col-form-label required">Avion:</label>
+                                    <% if(aviones.isEmpty()) { %>
+                                    <dd>No hay aviones registrados en tu aerolinea.</dd>
+                                    <% } else { %>
                                     <select name="avion_id" id="avion_id" class="form-control" required="">
                                         <option value="">Seleccionar</option>
+                                        <% if(persona.empleado().getPuesto().equals("Administrador")) { %>
+                                        <% for(Avion avion : aviones) { %>
+                                        <option value="<%= avion.getId() %>"><%= avion.getId() + " - " + avion.aeronave().getModelo() + " - " + avion.aerolinea().getNombre() %></option>
+                                        <% } } else { %>
                                         <% for(Avion avion : aviones) { %>
                                         <option value="<%= avion.getId() %>"><%= avion.getId() + " - " + avion.aeronave().getModelo() %></option>
-                                        <% }%>
+                                        <% } } %>
                                     </select>
+                                    <% } %>
                                 </div>
                             </div>
                             <div class="row">

@@ -34,7 +34,7 @@ public class VueloController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/Login");
         else {
             Persona persona = (Persona)session.getAttribute("persona");
-            if(persona.empleado() != null && persona.empleado().getPuesto().equals("Administrador")) {
+            if(persona.empleado() != null) {
                 String actions[] = request.getRequestURI().split("/");
                 String action = actions[actions.length-1];
                 if(new Halter(actions, request).validateMethod())
@@ -124,7 +124,7 @@ public class VueloController extends HttpServlet {
         ArrayList<Avion> aviones = new ArrayList<>();
         if(((Persona)request.getSession().getAttribute("persona")).empleado().aerolinea() != null)
             aviones = ((Persona)request.getSession().getAttribute("persona")).empleado().aerolinea().aviones();
-        request.setAttribute("aviones", aviones);
+        request.setAttribute("aviones", ((Persona)request.getSession().getAttribute("persona")).empleado().getPuesto().equals("Administrador") ? Avion.get() : aviones);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/vuelo/create.jsp");
         dispatcher.forward(request, response);
     }

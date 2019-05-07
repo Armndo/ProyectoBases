@@ -25,7 +25,6 @@ CREATE TABLE usuario(
 	id INT NOT NULL,
 	email VARCHAR(30) NOT NULL UNIQUE,
 	password VARCHAR(16) NOT NULL,
-	tipo VARCHAR(8) NOT NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY(id) REFERENCES persona(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -84,14 +83,6 @@ CREATE TABLE avion(
 	FOREIGN KEY(aerolinea_id) REFERENCES aerolinea(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE tripulacion(
-	empleado_id INT NOT NULL,
-	vuelo_id INT NOT NULL,
-	PRIMARY KEY(empleado_id, vuelo_id),
-	FOREIGN KEY(empleado_id) REFERENCES empleado(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY(vuelo_id) REFERENCES vuelo(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE vuelo(
 	id INT NOT NULL AUTO_INCREMENT,
 	fecha DATE NOT NULL,
@@ -104,6 +95,14 @@ CREATE TABLE vuelo(
 	FOREIGN KEY(avion_id) REFERENCES avion(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(origen) REFERENCES aeropuerto(iata) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(destino) REFERENCES aeropuerto(iata) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE tripulacion(
+	empleado_id INT NOT NULL,
+	vuelo_id INT NOT NULL,
+	PRIMARY KEY(empleado_id, vuelo_id),
+	FOREIGN KEY(empleado_id) REFERENCES empleado(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(vuelo_id) REFERENCES vuelo(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE clase(
@@ -127,8 +126,5 @@ CREATE TABLE boleto(
 );
 
 INSERT INTO persona VALUES (1, 'Armando', 'González', null, null, null, 140);
-INSERT INTO usuario VALUES (1, 'admin@mail.com', '123456', 'Empleado');
+INSERT INTO usuario VALUES (1, 'admin@mail.com', '123456');
 INSERT INTO empleado VALUES (1, 'Administrador', null);
-
-SELECT ar.nombre, a.modelo, COUNT(*) FROM avion av, aerolinea ar, aeronave a WHERE av.aerolinea_id = ar.id AND av.aeronave_id = a.id GROUP BY ar.id, av.aeronave_id;
-SELECT a.id, a.modelo, ar.nombre, COUNT(*) FROM avion av, aerolinea ar, aeronave a WHERE av.aerolinea_id = ar.id AND av.aeronave_id = a.id GROUP BY a.id, av.aerolinea_id;

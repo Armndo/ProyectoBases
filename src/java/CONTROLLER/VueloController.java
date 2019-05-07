@@ -4,6 +4,7 @@ import MODEL.Aerolinea;
 import MODEL.Aeropuerto;
 import MODEL.Avion;
 import MODEL.Persona;
+import MODEL.Vuelo;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -114,8 +115,8 @@ public class VueloController extends HttpServlet {
     }// </editor-fold>
 
     private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("aerolineas", Aerolinea.get());
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/aerolinea/index.jsp");
+        request.setAttribute("vuelos", Vuelo.get());
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/vuelo/index.jsp");
         dispatcher.forward(request, response);
     }
     
@@ -139,12 +140,12 @@ public class VueloController extends HttpServlet {
     
     private void view(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = request.getParameter("id") != null ? Integer.parseInt(request.getParameter("id")) : 0;
-        Aerolinea aerolinea = id != 0 ? new Aerolinea(id) : (Aerolinea)request.getSession().getAttribute("aerolinea");
-        if(aerolinea.getId() != 0) {
-            request.getSession().removeAttribute("aerolinea");
-            request.setAttribute("aerolinea", aerolinea);
-            request.setAttribute("aeronaves", aerolinea.aeronaves());
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/aerolinea/view.jsp");
+        Vuelo vuelo = id != 0 ? new Vuelo(id) : (Vuelo)request.getSession().getAttribute("vuelo");
+        System.out.println(vuelo);
+        if(vuelo.getId() != 0) {
+            request.getSession().removeAttribute("vuelo");
+            request.setAttribute("vuelo", vuelo);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/vuelo/view.jsp");
             dispatcher.forward(request, response);
         } else
             response.sendRedirect(request.getContextPath());

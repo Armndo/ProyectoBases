@@ -21,7 +21,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        ¡Bienvenid<%= persona.getSexo().equals("Mujer") ? "a" : persona.getSexo().equals("Hombre") ? "o" : "@" %>, <%= persona.getNombre() + " " + persona.getAppaterno() %>!
+                        <% if(persona.pasajero() != null) { %>
+                        ¡Bienvenid<%= persona.getSexo() != null ? persona.getSexo().equals("Mujer") ? "a" : persona.getSexo().equals("Hombre") ? "o" : "@" : "@" %>, <%= persona.getNombre() + " " + persona.getAppaterno() %>!
+                        <% } else { %>
+                        ¡Bienvenid<%= persona.getSexo() != null ? persona.getSexo().equals("Mujer") ? "a" : persona.getSexo().equals("Hombre") ? "o" : "@" : "@" %>, <%= persona.empleado().getPuesto() + " " + persona.getNombre() + " " + persona.getAppaterno() %>!
+                        <% } %>
                     </div>
                 </div>
             </div>

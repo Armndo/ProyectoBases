@@ -21,7 +21,26 @@ public class Vuelo {
     private double precio;
 
     public Vuelo(int id) {
-        this.id = id;
+        DatabaseConnector dc = new DatabaseConnector();
+        Connection con = dc.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement("SELECT * FROM vuelo WHERE id = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            rs.first();
+            this.id = rs.getInt("id");
+            fecha = rs.getString("fecha");
+            hora = rs.getString("hora");
+            avion_id = rs.getInt("avion_id");
+            origen = rs.getString("origen");
+            destino = rs.getString("destino");
+            precio = rs.getDouble("precio");
+        } catch (SQLException ex) {
+            System.out.println("Vuelo@Vuelo: " + ex.getMessage());
+        }
+        dc.closeConnection(con, ps, rs);
     }
 
     public Vuelo(String fecha, String hora, int avion_id, String origen, String destino, double precio) {
@@ -93,7 +112,7 @@ public class Vuelo {
         dc.closeConnection(con, ps, rs);
     }
     
-    public ArrayList<Vuelo> get() {
+    public static ArrayList<Vuelo> get() {
         DatabaseConnector dc = new DatabaseConnector();
         Connection con = dc.getConnection();
         PreparedStatement ps = null;
@@ -110,4 +129,22 @@ public class Vuelo {
         dc.closeConnection(con, ps, rs);
         return vuelos;
     }
+    
+    public Avion avion() {
+        return new Avion(avion_id);
+    }
+    
+    public Aeropuerto origen() {
+        return new Aeropuerto(origen);
+    }
+    
+    public Aeropuerto destino() {
+        return new Aeropuerto(destino);
+    }
+    
+    @Override
+    public String toString() {
+        return "Vuelo[" + id + "] {\n\tfecha: " + fecha + "\n\thora: " + hora + "\n\tavion_id: " + avion_id + "\n\torigen: " + origen + "\n\tdestino: " + destino + "\n\tprecio: " + precio + "\n}" ;
+    }
+    
 }

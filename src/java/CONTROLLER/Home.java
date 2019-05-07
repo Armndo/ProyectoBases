@@ -31,11 +31,8 @@ public class Home extends HttpServlet {
         else {
             Persona persona = (Persona)session.getAttribute("persona");
             RequestDispatcher dispatcher;
-            if(persona.pasajero() != null) {
+            if(persona != null) {
                 dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/home.jsp");
-                dispatcher.forward(request, response);
-            } else if(persona.empleado() != null) {
-                dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/homeE.jsp");
                 dispatcher.forward(request, response);
             } else {
                 session.invalidate();
